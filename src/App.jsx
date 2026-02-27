@@ -237,6 +237,78 @@ const S = {
   textInput: { width: "100%", padding: "10px 14px", background: "#1E293B", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 8, color: "#E2E8F0", fontSize: 14, outline: "none", boxSizing: "border-box" },
 };
 
+// ─── SITE BASE URL ───
+const SITE_BASE = "https://growthhigh87160.imweb.me";
+
+// ─── SITE HEADER ───
+function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [progHover, setProgHover] = useState(false);
+  return (
+    <>
+      <header style={{ background: "#0A0E1A", borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "0 24px", position: "relative", zIndex: 200 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+          {/* Logo */}
+          <a href={SITE_BASE} style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <img src="https://cdn.imweb.me/thumbnail/20260227/e557c3a4df50f.png" alt="Growth High" style={{ height: 36 }} />
+          </a>
+          {/* Desktop Nav */}
+          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="desktop-nav">
+            <a href={`${SITE_BASE}/home`} style={{ color: "#D1D5DB", textDecoration: "none", fontSize: 14, fontWeight: 500, letterSpacing: 0.5, transition: "color 0.2s" }}>HOME</a>
+            <a href={`${SITE_BASE}/27`} style={{ color: "#D1D5DB", textDecoration: "none", fontSize: 14, fontWeight: 500, letterSpacing: 0.5, transition: "color 0.2s" }}>Our works</a>
+            <div style={{ position: "relative" }} onMouseEnter={() => setProgHover(true)} onMouseLeave={() => setProgHover(false)}>
+              <a href={`${SITE_BASE}/23`} style={{ color: "#F1F5F9", textDecoration: "none", fontSize: 14, fontWeight: 700, letterSpacing: 0.5, transition: "color 0.2s" }}>Programs</a>
+              {progHover && (
+                <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", paddingTop: 8, zIndex: 300 }}>
+                  <div style={{ background: "#1E293B", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 8, padding: "8px 0", minWidth: 160, boxShadow: "0 8px 24px rgba(0,0,0,0.4)" }}>
+                    <a href={`${SITE_BASE}/23`} style={{ display: "block", padding: "8px 16px", color: "#D1D5DB", textDecoration: "none", fontSize: 13, transition: "background 0.2s" }}>한눈에 모든정보</a>
+                    <a href="#" onClick={e => { e.preventDefault(); setProgHover(false); }} style={{ display: "block", padding: "8px 16px", color: "#A5B4FC", textDecoration: "none", fontSize: 13, fontWeight: 600 }}>실시간 맞춤찾기</a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </nav>
+          {/* Mobile Menu Button */}
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} style={{ display: "none", background: "none", border: "none", color: "#D1D5DB", fontSize: 24, cursor: "pointer", padding: 4 }}>
+            {menuOpen ? "✕" : "☰"}
+          </button>
+        </div>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="mobile-menu" style={{ position: "absolute", top: 64, left: 0, right: 0, background: "#0F172A", borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "16px 24px", zIndex: 199 }}>
+            <a href={`${SITE_BASE}/home`} style={{ display: "block", padding: "12px 0", color: "#D1D5DB", textDecoration: "none", fontSize: 14, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>HOME</a>
+            <a href={`${SITE_BASE}/27`} style={{ display: "block", padding: "12px 0", color: "#D1D5DB", textDecoration: "none", fontSize: 14, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>Our works</a>
+            <a href={`${SITE_BASE}/23`} style={{ display: "block", padding: "12px 0", color: "#D1D5DB", textDecoration: "none", fontSize: 14, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>Programs — 한눈에 모든정보</a>
+            <a href="#" onClick={e => { e.preventDefault(); setMenuOpen(false); }} style={{ display: "block", padding: "12px 0", color: "#A5B4FC", textDecoration: "none", fontSize: 14, fontWeight: 600 }}>Programs — 실시간 맞춤찾기</a>
+          </div>
+        )}
+      </header>
+    </>
+  );
+}
+
+// ─── SITE FOOTER ───
+function SiteFooter() {
+  return (
+    <footer style={{ background: "#06080F", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "40px 24px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <a href={SITE_BASE} style={{ display: "inline-block", marginBottom: 20 }}>
+          <img src="https://cdn.imweb.me/thumbnail/20260227/1c47cac520c5f.png" alt="Growth High" style={{ height: 30, opacity: 0.8 }} />
+        </a>
+        <p style={{ fontSize: 12, color: "#64748B", fontWeight: 600, marginBottom: 12 }}>ⓒCopyright Growth High.Corp All rights reserved.</p>
+        <div style={{ fontSize: 12, color: "#475569", lineHeight: 2 }}>
+          <span>주식회사 그로스하이</span><span style={{ margin: "0 8px", color: "#334155" }}>|</span>
+          <span>대표 윤범상</span><span style={{ margin: "0 8px", color: "#334155" }}>|</span>
+          <span>사업자등록번호 598-86-03283</span><br />
+          <span>본사 : 서울 성동구 연무장7길 11, 10층</span><span style={{ margin: "0 8px", color: "#334155" }}>|</span>
+          <span>지사 : 경기 용인시 기흥구 동백중앙로 191, 8층</span><br />
+          <span>이메일 : <a href="mailto:official@growthhigh.co.kr" style={{ color: "#64748B", textDecoration: "none" }}>official@growthhigh.co.kr</a></span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 // ─── MAIN COMPONENT ───
 export default function App() {
   const [industry, setIndustry] = useState("all");
@@ -300,6 +372,7 @@ export default function App() {
     return (
       <div ref={reportRef} style={{ minHeight: "100vh", background: S.bg, color: "#E2E8F0", fontFamily: "'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif" }}>
         <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+        <SiteHeader />
         {/* Report Header */}
         <div style={{ background: "linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #1E1B4B 100%)", padding: "40px 24px", borderBottom: "2px solid #6366F1" }}>
           <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -415,11 +488,6 @@ export default function App() {
             <p style={{ fontSize: 11, color: "#818CF8", marginTop: 12 }}>평균 응답 시간: 영업일 기준 1일 이내</p>
           </div>
 
-          {/* Footer */}
-          <div style={{ textAlign: "center", padding: "32px 0 16px", borderTop: "1px solid rgba(51,65,85,0.3)", marginTop: 32 }}>
-            <p style={{ fontSize: 11, color: "#475569" }}>ⓒ 2026 Growth High Corp. All rights reserved. | official@growthhigh.co.kr</p>
-          </div>
-
           {/* Back button */}
           <div style={{ textAlign: "center", paddingBottom: 40 }}>
             <button onClick={() => setShowReport(false)} style={{ padding: "10px 24px", borderRadius: 8, border: "1px solid rgba(99,102,241,0.3)", background: "transparent", color: "#A5B4FC", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>
@@ -427,7 +495,11 @@ export default function App() {
             </button>
           </div>
         </div>
-        <style>{`::-webkit-scrollbar{width:6px} ::-webkit-scrollbar-track{background:transparent} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:3px}`}</style>
+        <SiteFooter />
+        <style>{`
+          ::-webkit-scrollbar{width:6px} ::-webkit-scrollbar-track{background:transparent} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:3px}
+          @media(max-width:768px){.desktop-nav{display:none!important}.mobile-menu-btn{display:block!important}}
+        `}</style>
       </div>
     );
   }
@@ -436,6 +508,7 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: S.bg, color: "#E2E8F0", fontFamily: "'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif" }}>
       <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+      <SiteHeader />
 
       {/* Header */}
       <div style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #0F172A 100%)", borderBottom: "1px solid rgba(99,102,241,0.2)", padding: "32px 24px 24px" }}>
@@ -546,6 +619,8 @@ export default function App() {
         )}
       </div>
 
+      <SiteFooter />
+
       {/* ★ Lead Capture Modal */}
       {showModal && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 24 }} onClick={() => setShowModal(false)}>
@@ -594,6 +669,7 @@ export default function App() {
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
+        @media(max-width:768px) { .desktop-nav { display:none!important; } .mobile-menu-btn { display:block!important; } }
       `}</style>
     </div>
   );
