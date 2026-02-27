@@ -246,40 +246,40 @@ function SiteHeader() {
   const [progHover, setProgHover] = useState(false);
   return (
     <>
-      <header style={{ background: "#0A0E1A", borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "0 24px", position: "relative", zIndex: 200 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+      <header style={{ background: "#000000", padding: "0 40px", position: "relative", zIndex: 200 }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}
           <a href={SITE_BASE} style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <img src="https://cdn.imweb.me/thumbnail/20260227/e557c3a4df50f.png" alt="Growth High" style={{ height: 36 }} />
+            <img src="https://cdn.imweb.me/thumbnail/20260227/e557c3a4df50f.png" alt="Growth High" style={{ height: 44 }} />
           </a>
           {/* Desktop Nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="desktop-nav">
-            <a href={`${SITE_BASE}/home`} style={{ color: "#D1D5DB", textDecoration: "none", fontSize: 14, fontWeight: 500, letterSpacing: 0.5, transition: "color 0.2s" }}>HOME</a>
-            <a href={`${SITE_BASE}/27`} style={{ color: "#D1D5DB", textDecoration: "none", fontSize: 14, fontWeight: 500, letterSpacing: 0.5, transition: "color 0.2s" }}>Our works</a>
+          <nav style={{ display: "flex", alignItems: "center", gap: 48 }} className="desktop-nav">
+            <a href={`${SITE_BASE}/home`} className="nav-link" style={{ color: "#CCCCCC", textDecoration: "none", fontSize: 15, fontWeight: 400, letterSpacing: 0.3, transition: "color 0.2s" }}>HOME</a>
+            <a href={`${SITE_BASE}/27`} className="nav-link" style={{ color: "#CCCCCC", textDecoration: "none", fontSize: 15, fontWeight: 400, letterSpacing: 0.3, transition: "color 0.2s" }}>Our works</a>
             <div style={{ position: "relative" }} onMouseEnter={() => setProgHover(true)} onMouseLeave={() => setProgHover(false)}>
-              <a href={`${SITE_BASE}/23`} style={{ color: "#F1F5F9", textDecoration: "none", fontSize: 14, fontWeight: 700, letterSpacing: 0.5, transition: "color 0.2s" }}>Programs</a>
+              <a href={`${SITE_BASE}/23`} className="nav-link" style={{ color: "#FFFFFF", textDecoration: "none", fontSize: 15, fontWeight: 600, letterSpacing: 0.3, transition: "color 0.2s" }}>Programs</a>
               {progHover && (
-                <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", paddingTop: 8, zIndex: 300 }}>
-                  <div style={{ background: "#1E293B", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 8, padding: "8px 0", minWidth: 160, boxShadow: "0 8px 24px rgba(0,0,0,0.4)" }}>
-                    <a href={`${SITE_BASE}/23`} style={{ display: "block", padding: "8px 16px", color: "#D1D5DB", textDecoration: "none", fontSize: 13, transition: "background 0.2s" }}>한눈에 모든정보</a>
-                    <a href="#" onClick={e => { e.preventDefault(); setProgHover(false); }} style={{ display: "block", padding: "8px 16px", color: "#A5B4FC", textDecoration: "none", fontSize: 13, fontWeight: 600 }}>실시간 맞춤찾기</a>
+                <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", paddingTop: 12, zIndex: 300 }}>
+                  <div style={{ background: "#1A1A1A", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "6px 0", minWidth: 170, boxShadow: "0 8px 30px rgba(0,0,0,0.6)" }}>
+                    <a href={`${SITE_BASE}/23`} className="dropdown-link" style={{ display: "block", padding: "10px 20px", color: "#AAAAAA", textDecoration: "none", fontSize: 14, transition: "color 0.2s" }}>한눈에 모든정보</a>
+                    <a href="#" onClick={e => { e.preventDefault(); setProgHover(false); window.scrollTo(0,0); }} className="dropdown-link" style={{ display: "block", padding: "10px 20px", color: "#FFFFFF", textDecoration: "none", fontSize: 14, fontWeight: 600 }}>실시간 맞춤찾기</a>
                   </div>
                 </div>
               )}
             </div>
           </nav>
           {/* Mobile Menu Button */}
-          <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} style={{ display: "none", background: "none", border: "none", color: "#D1D5DB", fontSize: 24, cursor: "pointer", padding: 4 }}>
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} style={{ display: "none", background: "none", border: "none", color: "#FFFFFF", fontSize: 26, cursor: "pointer", padding: 4 }}>
             {menuOpen ? "✕" : "☰"}
           </button>
         </div>
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="mobile-menu" style={{ position: "absolute", top: 64, left: 0, right: 0, background: "#0F172A", borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "16px 24px", zIndex: 199 }}>
-            <a href={`${SITE_BASE}/home`} style={{ display: "block", padding: "12px 0", color: "#D1D5DB", textDecoration: "none", fontSize: 14, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>HOME</a>
-            <a href={`${SITE_BASE}/27`} style={{ display: "block", padding: "12px 0", color: "#D1D5DB", textDecoration: "none", fontSize: 14, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>Our works</a>
-            <a href={`${SITE_BASE}/23`} style={{ display: "block", padding: "12px 0", color: "#D1D5DB", textDecoration: "none", fontSize: 14, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>Programs — 한눈에 모든정보</a>
-            <a href="#" onClick={e => { e.preventDefault(); setMenuOpen(false); }} style={{ display: "block", padding: "12px 0", color: "#A5B4FC", textDecoration: "none", fontSize: 14, fontWeight: 600 }}>Programs — 실시간 맞춤찾기</a>
+          <div className="mobile-menu" style={{ position: "absolute", top: 72, left: 0, right: 0, background: "#0A0A0A", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "12px 40px 20px", zIndex: 199 }}>
+            <a href={`${SITE_BASE}/home`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>HOME</a>
+            <a href={`${SITE_BASE}/27`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>Our works</a>
+            <a href={`${SITE_BASE}/23`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>한눈에 모든정보</a>
+            <a href="#" onClick={e => { e.preventDefault(); setMenuOpen(false); window.scrollTo(0,0); }} style={{ display: "block", padding: "14px 0", color: "#FFFFFF", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>실시간 맞춤찾기</a>
           </div>
         )}
       </header>
@@ -290,19 +290,19 @@ function SiteHeader() {
 // ─── SITE FOOTER ───
 function SiteFooter() {
   return (
-    <footer style={{ background: "#06080F", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "40px 24px" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <a href={SITE_BASE} style={{ display: "inline-block", marginBottom: 20 }}>
-          <img src="https://cdn.imweb.me/thumbnail/20260227/1c47cac520c5f.png" alt="Growth High" style={{ height: 30, opacity: 0.8 }} />
+    <footer style={{ background: "#000000", borderTop: "1px solid rgba(255,255,255,0.04)", padding: "48px 40px" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+        <a href={SITE_BASE} style={{ display: "inline-block", marginBottom: 24 }}>
+          <img src="https://cdn.imweb.me/thumbnail/20260227/1c47cac520c5f.png" alt="Growth High" style={{ height: 32, opacity: 0.7 }} />
         </a>
-        <p style={{ fontSize: 12, color: "#64748B", fontWeight: 600, marginBottom: 12 }}>ⓒCopyright Growth High.Corp All rights reserved.</p>
-        <div style={{ fontSize: 12, color: "#475569", lineHeight: 2 }}>
-          <span>주식회사 그로스하이</span><span style={{ margin: "0 8px", color: "#334155" }}>|</span>
-          <span>대표 윤범상</span><span style={{ margin: "0 8px", color: "#334155" }}>|</span>
+        <p style={{ fontSize: 13, color: "#555555", fontWeight: 700, marginBottom: 16 }}>ⓒCopyright Growth High.Corp All rights reserved.</p>
+        <div style={{ fontSize: 12, color: "#444444", lineHeight: 2.2 }}>
+          <span>주식회사 그로스하이</span><span style={{ margin: "0 12px", color: "#333333" }}>|</span>
+          <span>대표 윤범상</span><br />
           <span>사업자등록번호 598-86-03283</span><br />
-          <span>본사 : 서울 성동구 연무장7길 11, 10층</span><span style={{ margin: "0 8px", color: "#334155" }}>|</span>
+          <span>본사 : 서울 성동구 연무장7길 11, 10층</span><br />
           <span>지사 : 경기 용인시 기흥구 동백중앙로 191, 8층</span><br />
-          <span>이메일 : <a href="mailto:official@growthhigh.co.kr" style={{ color: "#64748B", textDecoration: "none" }}>official@growthhigh.co.kr</a></span>
+          <span>이메일 : <a href="mailto:official@growthhigh.co.kr" style={{ color: "#555555", textDecoration: "none" }}>official@growthhigh.co.kr</a></span>
         </div>
       </div>
     </footer>
@@ -499,6 +499,7 @@ export default function App() {
         <style>{`
           ::-webkit-scrollbar{width:6px} ::-webkit-scrollbar-track{background:transparent} ::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:3px}
           @media(max-width:768px){.desktop-nav{display:none!important}.mobile-menu-btn{display:block!important}}
+          .nav-link:hover{color:#FFFFFF!important} .dropdown-link:hover{color:#FFFFFF!important;background:rgba(255,255,255,0.05)}
         `}</style>
       </div>
     );
@@ -670,6 +671,8 @@ export default function App() {
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
         @media(max-width:768px) { .desktop-nav { display:none!important; } .mobile-menu-btn { display:block!important; } }
+        .nav-link:hover { color: #FFFFFF !important; }
+        .dropdown-link:hover { color: #FFFFFF !important; background: rgba(255,255,255,0.05); }
       `}</style>
     </div>
   );
