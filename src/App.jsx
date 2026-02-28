@@ -240,6 +240,17 @@ const S = {
 // ─── SITE BASE URL ───
 const SITE_BASE = "https://growthhigh87160.imweb.me";
 
+// ─── LOGO COMPONENT ───
+function GHLogo({ height = 44, light = true }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <div style={{ fontSize: height * 0.42, fontWeight: 800, color: light ? "#FFFFFF" : "#999999", letterSpacing: -0.5, fontFamily: "'Pretendard',sans-serif", lineHeight: 1 }}>Growth'High</div>
+      <div style={{ width: 1, height: height * 0.35, background: light ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)" }} />
+      <div style={{ fontSize: height * 0.22, fontWeight: 500, color: light ? "#777777" : "#555555", letterSpacing: 2, fontFamily: "'Pretendard',sans-serif", lineHeight: 1 }}>그로스하이</div>
+    </div>
+  );
+}
+
 // ─── SITE HEADER ───
 function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -250,7 +261,7 @@ function SiteHeader() {
         <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}
           <a href={SITE_BASE} style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <img src="https://cdn.imweb.me/thumbnail/20260227/e557c3a4df50f.png" alt="Growth High" style={{ height: 44 }} />
+            <GHLogo height={40} light={true} />
           </a>
           {/* Desktop Nav */}
           <nav style={{ display: "flex", alignItems: "center", gap: 48 }} className="desktop-nav">
@@ -293,7 +304,7 @@ function SiteFooter() {
     <footer style={{ background: "#000000", borderTop: "1px solid rgba(255,255,255,0.04)", padding: "48px 40px" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         <a href={SITE_BASE} style={{ display: "inline-block", marginBottom: 24 }}>
-          <img src="https://cdn.imweb.me/thumbnail/20260227/1c47cac520c5f.png" alt="Growth High" style={{ height: 32, opacity: 0.7 }} />
+          <GHLogo height={32} light={false} />
         </a>
         <p style={{ fontSize: 13, color: "#555555", fontWeight: 700, marginBottom: 16 }}>ⓒCopyright Growth High.Corp All rights reserved.</p>
         <div style={{ fontSize: 12, color: "#444444", lineHeight: 2.2 }}>
@@ -380,7 +391,7 @@ export default function App() {
         <div style={{ background: "linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #1E1B4B 100%)", padding: "40px 24px", borderBottom: "2px solid #6366F1" }}>
           <div style={{ maxWidth: 800, margin: "0 auto" }}>
             <div style={{ fontSize: 11, color: "#A5B4FC", fontWeight: 700, letterSpacing: 2, marginBottom: 8 }}>GROWTH'HIGH CUSTOM REPORT</div>
-            <h1 style={{ fontSize: 26, fontWeight: 800, margin: "0 0 6px", color: "#F1F5F9" }}>2026 맞춤형 정부지원사업 리포트</h1>
+            <h1 style={{ fontSize: 26, fontWeight: 800, margin: "0 0 6px", color: "#F1F5F9" }}>2026 정부지원사업 맞춤 찾기 리포트</h1>
             <p style={{ fontSize: 14, color: "#94A3B8", margin: "12px 0 0" }}>
               {submittedLead.company} · {submittedLead.name} {submittedLead.position} 님을 위한 분석 결과입니다.
             </p>
@@ -483,7 +494,7 @@ export default function App() {
             <div style={{ fontSize: 32, marginBottom: 12 }}>💬</div>
             <h2 style={{ fontSize: 22, fontWeight: 800, color: "#F1F5F9", margin: "0 0 8px" }}>더 자세한 맞춤 분석이 필요하신가요?</h2>
             <p style={{ fontSize: 14, color: "#C7D2FE", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 500, marginLeft: "auto", marginRight: "auto" }}>
-              그로스하이 전문 컨설턴트가 귀사의 사업 현황을 진단하고, 합격 확률이 높은 지원사업을 선별하여 맞춤형 전략을 제시해드립니다.
+              그로스하이 전문 컨설턴트가 귀사의 사업 현황을 진단하고, 합격 확률이 높은 지원사업을 선별하여 맞춤 전략을 제시해드립니다.
             </p>
             <a href="https://growthhigh87160.imweb.me" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", padding: "14px 36px", background: "#F1F5F9", color: "#1E1B4B", borderRadius: 10, fontSize: 16, fontWeight: 800, textDecoration: "none", transition: "transform 0.2s" }}>
               무료 상담 신청하기 →
@@ -525,7 +536,7 @@ export default function App() {
             </div>
           </div>
           <p style={{ fontSize: 13, color: "#94A3B8", margin: "8px 0 0", lineHeight: 1.6 }}>
-            5개 분야 총 <span style={{ color: "#A5B4FC", fontWeight: 700 }}>{PROGRAMS.length}개</span> 프로그램에서 내 기업에 맞는 지원사업을 찾아보세요.
+            5개 분야 총 <span style={{ color: "#A5B4FC", fontWeight: 700 }}>{PROGRAMS.length}개</span> 프로그램에서 내 기업에 맞는 지원사업을 지원사업을 찾아보세요.
           </p>
         </div>
       </div>
