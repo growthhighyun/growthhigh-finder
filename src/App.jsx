@@ -319,9 +319,12 @@ export default function App() {
   const [showReport, setShowReport] = useState(false);
   const [leadInfo, setLeadInfo] = useState({ company: "", position: "", name: "", email: "" });
   const [submittedLead, setSubmittedLead] = useState(null);
+  const [pulseReport, setPulseReport] = useState(0);
   const reportRef = useRef(null);
 
-  const toggleSupport = (v) => setSelectedSupports(p => p.includes(v) ? p.filter(x => x !== v) : [...p, v]);
+  const toggleSupport = (v) => { setSelectedSupports(p => p.includes(v) ? p.filter(x => x !== v) : [...p, v]); setPulseReport(k => k + 1); };
+  const handleIndustryChange = (v) => { setIndustry(v); if (v !== "all") setPulseReport(k => k + 1); };
+  const handleAgeChange = (v) => { setAge(v); if (v !== "all") setPulseReport(k => k + 1); };
   const hasFilters = industry !== "all" || age !== "all" || selectedSupports.length > 0;
   const resetFilters = () => { setIndustry("all"); setAge("all"); setSelectedSupports([]); };
 
@@ -530,16 +533,29 @@ export default function App() {
       {/* Filter Section (Sticky) */}
       <div style={{ background: "rgba(15,23,42,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(99,102,241,0.1)", padding: "20px 24px", position: "sticky", top: 0, zIndex: 100 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          {/* Step guide */}
+          {!hasFilters && (
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, padding: "10px 14px", background: "rgba(99,102,241,0.08)", borderRadius: 8, border: "1px solid rgba(99,102,241,0.15)" }}>
+              <span style={{ fontSize: 16 }}>👇</span>
+              <span style={{ fontSize: 13, color: "#C7D2FE", lineHeight: 1.5 }}>아래 조건을 선택하시면 <strong style={{ color: "#A5B4FC" }}>맞춤 리포트</strong>를 받아보실 수 있습니다.</span>
+            </div>
+          )}
+          {hasFilters && (
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, padding: "10px 14px", background: "rgba(16,185,129,0.08)", borderRadius: 8, border: "1px solid rgba(16,185,129,0.15)" }}>
+              <span style={{ fontSize: 16 }}>✅</span>
+              <span style={{ fontSize: 13, color: "#6EE7B7", lineHeight: 1.5 }}>조건이 설정되었습니다. 결과를 확인하고 <strong style={{ color: "#34D399" }}>맞춤 리포트</strong>를 받아보세요!</span>
+            </div>
+          )}
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
             <div style={{ flex: "1 1 200px" }}>
               <label style={{ fontSize: 11, color: S.accent, fontWeight: 700, letterSpacing: 1, display: "block", marginBottom: 6 }}>① 업종</label>
-              <select value={industry} onChange={e => setIndustry(e.target.value)} style={S.input}>
+              <select value={industry} onChange={e => handleIndustryChange(e.target.value)} style={S.input}>
                 {INDUSTRY_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
             </div>
             <div style={{ flex: "1 1 200px" }}>
               <label style={{ fontSize: 11, color: S.accent, fontWeight: 700, letterSpacing: 1, display: "block", marginBottom: 6 }}>② 업력</label>
-              <select value={age} onChange={e => setAge(e.target.value)} style={S.input}>
+              <select value={age} onChange={e => handleAgeChange(e.target.value)} style={S.input}>
                 {AGE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
               </select>
             </div>
@@ -561,10 +577,19 @@ export default function App() {
               </span>
               {hasFilters && <button onClick={resetFilters} style={{ padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(239,68,68,0.3)", background: "rgba(239,68,68,0.1)", color: "#F87171", fontSize: 11, fontWeight: 600, cursor: "pointer" }}>✕ 초기화</button>}
             </div>
-            {/* ★ Report CTA Button */}
-            <button onClick={() => setShowModal(true)} style={{ padding: "9px 20px", borderRadius: 8, border: "none", background: "linear-gradient(135deg, #6366F1, #8B5CF6)", color: "#F1F5F9", fontSize: 13, fontWeight: 700, cursor: "pointer", boxShadow: "0 2px 12px rgba(99,102,241,0.4)", transition: "all 0.2s", display: "flex", alignItems: "center", gap: 6 }}>
-              📄 맞춤 리포트 확인하기
-            </button>
+            {/* ★ Report CTA Button — conditional */}
+            {hasFilters ? (
+              <button key={pulseReport} onClick={() => setShowModal(true)} className="report-cta-pulse" style={{ padding: "9px 20px", borderRadius: 8, border: "none", background: "linear-gradient(135deg, #6366F1, #8B5CF6)", color: "#F1F5F9", fontSize: 13, fontWeight: 700, cursor: "pointer", boxShadow: "0 2px 12px rgba(99,102,241,0.4)", transition: "all 0.2s", display: "flex", alignItems: "center", gap: 6 }}>
+                📄 맞춤 리포트 확인하기 ({filtered.length}건)
+              </button>
+            ) : (
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 12, color: "#475569" }}>조건을 먼저 선택해주세요</span>
+                <button disabled style={{ padding: "9px 20px", borderRadius: 8, border: "1px solid rgba(71,85,105,0.3)", background: "#1E293B", color: "#475569", fontSize: 13, fontWeight: 600, cursor: "not-allowed", display: "flex", alignItems: "center", gap: 6 }}>
+                  📄 맞춤 리포트 확인하기
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -665,6 +690,8 @@ export default function App() {
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes ctaPulse { 0% { box-shadow: 0 2px 12px rgba(99,102,241,0.4); } 50% { box-shadow: 0 2px 24px rgba(99,102,241,0.8), 0 0 0 4px rgba(99,102,241,0.15); } 100% { box-shadow: 0 2px 12px rgba(99,102,241,0.4); } }
+        .report-cta-pulse { animation: ctaPulse 0.6s ease-out 1; }
         select:focus, input:focus { border-color: #6366F1 !important; box-shadow: 0 0 0 2px rgba(99,102,241,0.2); }
         button:hover { opacity: 0.9; }
         ::-webkit-scrollbar { width: 6px; }
