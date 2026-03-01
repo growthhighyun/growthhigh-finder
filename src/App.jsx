@@ -238,7 +238,7 @@ const S = {
 };
 
 // ─── SITE BASE URL ───
-const SITE_BASE = "https://growthhigh87160.imweb.me";
+const SITE_BASE = "https://www.growthhigh.co.kr";
 
 // ─── LOGO COMPONENT ───
 function GHLogo({ height = 44, light = true }) {
@@ -272,12 +272,13 @@ function SiteHeader() {
               {progHover && (
                 <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", paddingTop: 12, zIndex: 300 }}>
                   <div style={{ background: "#1A1A1A", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "6px 0", minWidth: 170, boxShadow: "0 8px 30px rgba(0,0,0,0.6)" }}>
-                    <a href={`${SITE_BASE}/23`} className="dropdown-link" style={{ display: "block", padding: "10px 20px", color: "#AAAAAA", textDecoration: "none", fontSize: 14, transition: "color 0.2s" }}>한눈에 모든정보</a>
+                    <a href={`${SITE_BASE}/30`} className="dropdown-link" style={{ display: "block", padding: "10px 20px", color: "#AAAAAA", textDecoration: "none", fontSize: 14, transition: "color 0.2s" }}>한눈에 모든정보</a>
                     <a href="#" onClick={e => { e.preventDefault(); setProgHover(false); window.scrollTo(0,0); }} className="dropdown-link" style={{ display: "block", padding: "10px 20px", color: "#FFFFFF", textDecoration: "none", fontSize: 14, fontWeight: 600 }}>실시간 맞춤찾기</a>
                   </div>
                 </div>
               )}
             </div>
+            <a href={`${SITE_BASE}/32`} className="nav-link" style={{ color: "#CCCCCC", textDecoration: "none", fontSize: 15, fontWeight: 400, letterSpacing: 0.3, transition: "color 0.2s" }}>Contact</a>
           </nav>
           {/* Mobile Menu Button */}
           <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} style={{ display: "none", background: "none", border: "none", color: "#FFFFFF", fontSize: 26, cursor: "pointer", padding: 4 }}>
@@ -289,8 +290,9 @@ function SiteHeader() {
           <div className="mobile-menu" style={{ position: "absolute", top: 72, left: 0, right: 0, background: "#0A0A0A", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "12px 40px 20px", zIndex: 199 }}>
             <a href={`${SITE_BASE}/home`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>HOME</a>
             <a href={`${SITE_BASE}/27`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>Our works</a>
-            <a href={`${SITE_BASE}/23`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>한눈에 모든정보</a>
-            <a href="#" onClick={e => { e.preventDefault(); setMenuOpen(false); window.scrollTo(0,0); }} style={{ display: "block", padding: "14px 0", color: "#FFFFFF", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>실시간 맞춤찾기</a>
+            <a href={`${SITE_BASE}/30`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>한눈에 모든정보</a>
+            <a href="#" onClick={e => { e.preventDefault(); setMenuOpen(false); window.scrollTo(0,0); }} style={{ display: "block", padding: "14px 0", color: "#FFFFFF", textDecoration: "none", fontSize: 15, fontWeight: 600, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>실시간 맞춤찾기</a>
+            <a href={`${SITE_BASE}/32`} style={{ display: "block", padding: "14px 0", color: "#CCCCCC", textDecoration: "none", fontSize: 15 }}>Contact</a>
           </div>
         )}
       </header>
@@ -496,7 +498,7 @@ export default function App() {
             <p style={{ fontSize: 14, color: "#C7D2FE", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 500, marginLeft: "auto", marginRight: "auto" }}>
               그로스하이 전문 컨설턴트가 귀사의 사업 현황을 진단하고, 합격 확률이 높은 지원사업을 선별하여 맞춤 전략을 제시해드립니다.
             </p>
-            <a href="https://growthhigh87160.imweb.me" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", padding: "14px 36px", background: "#F1F5F9", color: "#1E1B4B", borderRadius: 10, fontSize: 16, fontWeight: 800, textDecoration: "none", transition: "transform 0.2s" }}>
+            <a href="https://www.growthhigh.co.kr" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", padding: "14px 36px", background: "#F1F5F9", color: "#1E1B4B", borderRadius: 10, fontSize: 16, fontWeight: 800, textDecoration: "none", transition: "transform 0.2s" }}>
               무료 상담 신청하기 →
             </a>
             <p style={{ fontSize: 11, color: "#818CF8", marginTop: 12 }}>평균 응답 시간: 영업일 기준 1일 이내</p>
