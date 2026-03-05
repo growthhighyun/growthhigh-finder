@@ -356,6 +356,22 @@ export default function App() {
     setShowModal(false);
     setShowReport(true);
     setTimeout(() => reportRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
+
+    // 백그라운드로 리드 데이터 전송 (UX 차단 없음)
+    const selectedSupportLabels = selectedSupports.map(v => SUPPORT_OPTIONS.find(o => o.value === v)?.label || v).join(", ");
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...leadInfo,
+        filters: {
+          industry: INDUSTRY_OPTIONS.find(o => o.value === industry)?.label || "전체",
+          age: AGE_OPTIONS.find(o => o.value === age)?.label || "전체",
+          supports: selectedSupportLabels || "-",
+        },
+        resultCount: filtered.length,
+      }),
+    }).catch(err => console.error("리드 전송 실패:", err));
   };
 
   const getIndustryLabel = () => INDUSTRY_OPTIONS.find(o => o.value === industry)?.label || "전체";
