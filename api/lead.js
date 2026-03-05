@@ -64,7 +64,7 @@ export default async function handler(req, res) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Growth High <onboarding@resend.dev>",
+            from: "Growth High <noreply@growthhigh.co.kr>",
             to: email,
             subject: `[Growth High] ${company}님의 2026 정부지원사업 맞춤 리포트`,
             html: `
@@ -121,7 +121,7 @@ export default async function handler(req, res) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Growth High <onboarding@resend.dev>",
+            from: "Growth High <noreply@growthhigh.co.kr>",
             to: process.env.NOTIFY_EMAIL || "official@growthhigh.co.kr",
             subject: `[새 리드] ${company} - ${name}님이 맞춤 리포트를 요청했습니다`,
             html: `
