@@ -13,6 +13,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "필수 항목을 입력해주세요." });
     }
 
+    // DB ID에서 ?v= 이후 자동 제거
+    const rawDbId = process.env.NOTION_DB_ID || "";
+    const dbId = rawDbId.split("?")[0].trim();
+
     const response = await fetch("https://api.notion.com/v1/pages", {
       method: "POST",
       headers: {
@@ -21,7 +25,7 @@ export default async function handler(req, res) {
         "Notion-Version": "2022-06-28",
       },
       body: JSON.stringify({
-        parent: { database_id: process.env.NOTION_DB_ID },
+        parent: { database_id: dbId },
         properties: {
           "회사명": { title: [{ text: { content: company } }] },
           "성명": { rich_text: [{ text: { content: name } }] },
